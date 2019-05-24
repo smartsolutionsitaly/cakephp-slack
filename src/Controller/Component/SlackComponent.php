@@ -41,12 +41,10 @@ class SlackComponent extends Component
 
     /**
      * {@inheritDoc}
-     * @see \Cake\Controller\Component::initialize()
+     * @see \Cake\Controller\Component::beforeFilter()
      */
-    public function initialize(array $config = [])
+    public function beforeFilter(array $config = [])
     {
-        parent::initialize($config);
-
         $request = $this->getController()->getRequest();
 
         if ((bool)Configure::read('Settings.bots.slack.enable') && $request->getData('token') == Configure::read('Slack.token')) {
@@ -62,18 +60,16 @@ class SlackComponent extends Component
     /**
      * Sends a text message to Slack and returns a serialized response.
      * @param string $text The text to send.
-     * @return mixed A serialized response.
+     * @return bool A value indicating whether the message has been sent.
      */
-    public function respond(string $text)
+    public function respond(string $text): bool
     {
-        $this->_client->text($text);
-
         $this->getController()->set('content', [
             'response_type' => 'in_channel',
             'text' => $text
         ]);
         $this->getController()->set('_serialize', ['response_type', 'text']);
 
-        return null;
+        return $this->_client->text($text);;
     }
 }
