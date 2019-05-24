@@ -3,9 +3,9 @@
   "description": "Slack client and helpers for CakePHP",
   "keywords": [
     "cakephp",
-    "color",
-    "datasource",
-    "database"
+    "slack",
+    "shell",
+    "component"
   ],
   "type": "cakephp-plugin",
   "license": "MIT",
