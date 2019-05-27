@@ -11,7 +11,8 @@
   "type": "cakephp-plugin",
   "license": "MIT",
   "require": {
-    "php": "^7.0"
+    "php": "^7.0",
+    "ext-intl": "*"
   },
   "require-dev": {
     "cakephp/cakephp": "^3.6"
